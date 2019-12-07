@@ -1,0 +1,14 @@
+#big {
+	border: 2px solid black;
+	width: 350px;
+	height: 150px;
+}
+#small {
+	border: 2px solid black;
+	width: 250px;
+	height: 75px;
+	margin-left: 200px;
+}
+.margin {
+	margin-left: 100px;
+}
