@@ -1,0 +1,13 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+<p><%= @user.name %></p>
+<p><%= @user.email %></p>
+<a href="/users/<%= @user.id %>/edit">Edit Profile</a>
+<a href="/users/<%= @user.id %>" data-method="delete">Delete</a>
+
+<h2>New Secret</h2>
+<form action="/secrets" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="text" name="secret[content]">
+	<input type="submit" value="Create">
+</form>

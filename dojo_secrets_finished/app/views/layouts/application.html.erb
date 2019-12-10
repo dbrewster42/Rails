@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DojoSecrets</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>  	
+	<% if current_user %>
+		<h1 id="head">Welcome, <%= current_user.name %></h1>
+  		<form action="/sessions/<%=current_user.id%>" method="post" id="log">
+    		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    		<input type="hidden" name="_method" value="delete">
+    		<input type="submit" value="Log Out">
+ 		</form>
+	<% end %>
+  <% if flash[:alert] %>
+    <%= flash[:alert] %>
+  <% end %> 
+	<% if flash[:errors] %>
+  		<% flash[:errors].each do |e| %>
+    		<%= e %>
+  		<% end %>
+	<% end %> 
+    <%= yield %>
+  </body>
+</html>
