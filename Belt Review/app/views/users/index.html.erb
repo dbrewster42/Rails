@@ -1,0 +1,23 @@
+<h1>Welcome!</h1>
+<div id="reg">
+	<h2>Register</h2>
+	<form action="/users" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		Name <input type="text" name="user[name]"> <br>
+		Email <input type="text" name="user[email]"><br>
+		State <input type="text" name="user[state]" maxlength="2"><br>
+		Password <input type="text" name="user[password]"><br>
+		*Password should be at least 6 characters<br>
+		Confirm PW <input type="text" name="user[password_confirmation]"><br>
+		<input type="submit" value="Register">		
+	</form>
+</div>
+<div id="log">
+	<h2>Login</h2>
+	<form action="/" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		Email <input type="text" name="email"><br>
+		Password <input type="text" name="password"><br>
+		<input type="submit" value="Login">
+	</form>	
+</div>

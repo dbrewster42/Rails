@@ -1,0 +1,10 @@
+<h1>Users#edit</h1>
+<p>Find me in app/views/users/edit.html.erb</p>
+ <% if current_user %>
+ 		<h1 id="head">Welcome, <%= current_user.name %></h1>
+   		<form action="/userss/<%=current_user.id%>" method="post" id="logout">
+     		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+     		<input type="hidden" name="_method" value="delete">
+     		<input type="submit" value="Log Out">
+  		</form>
+ 	<% end %> 

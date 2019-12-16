@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BeltReview</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<% if flash[:alert] %>
+      <div class="errors">
+    	 <%= flash[:alert] %>
+      </div>
+  	<% end %> 
+	<% if flash[:errors] %>
+  <div class="errors">
+  		<% flash[:errors].each do |e| %>
+    		<%= e %>
+      
+  		<% end %>
+    </div>  
+	<% end %>
+	<% if current_user %>
+    <h1 id="header">Welcome <%= current_user.name %></h1>
+      <a id="hlink" href="/users/<%= current_user.id %>">Edit My Profile</a>
+      <form action="/userss/<%= current_user.id%>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Logout" id="logout">
+      </form>
+      <% end %>
+    <%= yield %>
+  </body>
+</html>

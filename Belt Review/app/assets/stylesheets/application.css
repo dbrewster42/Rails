@@ -1,0 +1,32 @@
+.errors {
+	border: 2px solid red;
+	color: green;
+	margin-left: 20px;
+	width: 300px;
+}
+#logoutasdf {
+	display: inline-block;
+	border: none;
+	outline: none;
+	background-color: grey;
+	color: blue;
+	margin-left: 20px;
+	display: inline-block;
+	margin-left: 20px;
+}
+#logout {
+	margin-left: 20px;
+	display: inline-block;
+	color: blue;
+	text-decoration: underline;
+	background: none;
+  	border: none;
+  	padding: 0;
+}
+#hlink {
+	margin-left: 400px;
+	
+}
+#header {
+	display: inline-block;
+}

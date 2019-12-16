@@ -1,0 +1,10 @@
+
+
+<form action="/events/<%= @event.id%>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="patch">
+  Name <input type="text" name="event[name]" value="<%= @event.name%>">
+  Date <input type="date" name="event[date]" value="<%= @event.date %>">
+  State <input type="text" maxlength="2" name="event[state]" value="<%= @event.state %>">
+  <input type="submit" value="Add Event">
+</form> 

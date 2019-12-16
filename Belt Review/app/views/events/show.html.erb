@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div id="left">
+	<h1><%= @event.name %></h1><br>
+	<h3>Host: <%= @event.user.name %></h3>
+	<h3>Date: <%= @event.date %></h3>
+	<h3>State: <%= @event.state %></h3>
+	<h3>People who have joined this event: <%= @members.length %></h3><br>
+	<table class="table">
+  <thead class="thead-dark">
+    <tr>      
+      <th scope="col">Name</th>
+      <th scope="col">State</th>      
+    </tr>
+  </thead>
+  <tbody>
+  	<% @members.each do |m| %>
+    <tr>
+      <th scope="row"> <%= m.user.name %></th>
+      <td> <%= m.user.state %></td>     
+    </tr> 
+    <% end %>   
+  </tbody>
+</table>
+	</div>
+	<div id="right">
+		<a href="/events">Event Dashboard</a>
+		<form action="/userss/<%= current_user.id%>" method="post" id="logout">
+    		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    		<input type="hidden" name="_method" value="delete">
+    		<input type="submit" value="Logout">
+ 		</form>
+ 		<br><br>
+		<h3>Discussion about this event:</h3>
+		<div id="scroll">
+			<% @comments.each do |c| %>
+			<p><%= c.user.name %> says: <%= c.content %> </p>
+			<p>*****************************</p>
+			<% end %>
+		</div>
+		<form action="/events/<%=@event.id%>/comments" method="post">			
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">			
+			Add comment: <br>
+			<input type="text" name="comment[content]"><br>
+			<input type="submit" value="Submit Comments">
+		</form>
+	</div>
+	
+</body>
+</html>

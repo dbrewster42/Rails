@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<h1 id="head">Welcome <%= current_user.name %>!</h1>	
+	<a href="/users/<%= current_user.id %>">Edit My Profile</a>
+	<form action="/userss/<%= current_user.id%>" method="post" id="logout">
+    	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    	<input type="hidden" name="_method" value="delete">
+    	<input type="submit" value="Logout">
+ 	</form>
+ 	<h2>Here are some of the events in your state</h2>
+	<table class="table table-striped table-dark">
+  		<thead>
+   			<tr>
+     		<th scope="col">Name</th>
+	      	<th scope="col">Date</th>
+	      	<th scope="col">Location</th>	      	
+	      	<th scope="col">Host</th>
+	      	<th scope="col">Actions</th>	
+	    	</tr>
+	  	</thead>
+	  	<tbody>
+	  		<% @eventsa.each do |e| %>
+	   	 	<tr> 	   	 
+	    	  <td><a href="/events/<%= e.id %>"><%= e.name %></a></td>
+	    	  <td><%= e.date %> </td>
+	    	  <td><%= e.state %></td>
+	    	  <td><%= e.user.name %>	</td>
+	    	  <td><% if current_user == e.user %>
+	    	  <a href="/events/<%= e.id %>/edit">Edit</a>Delete    		
+    			
+    				<% elsif @joined_events.include?(e) %>
+    					Unjoin
+    				<% else %>    					
+			    		<form action="/events/<%= e.id%>/join" method="post">
+			    			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			    			<input type="hidden" name="_method" value="patch">
+			    			<input type="submit" value="Join">
+			    		</form>			    		
+    				<% end %>
+    			</td>
+    		</tr>
+    		<% end %>   
+  			</tbody>
+		</table>
+		<br>
+		<h2>Here are some of the events in other states</h2>
+		<table class="table table-striped table-dark">
+  		<thead>
+   			<tr>
+     		<th scope="col">Name</th>
+	      	<th scope="col">Date</th>
+	      	<th scope="col">Location</th>	      	
+	      	<th scope="col">Host</th>
+	      	<th scope="col">Actions</th>	
+	    	</tr>
+	  	</thead>
+	  	<tbody>
+	  		<% @eventso.each do |e| %>
+	   	 	<tr> 	   	    	 
+	    	  <td><a href="/events/<%= e.id %>"><%= e.name %></a></td>
+	    	  <td><%= e.date %> </td>
+	    	  <td><%= e.state %></td>
+	    	  <td><%= e.user.name %>	</td>
+	    	  <td><% if current_user == e.user %>
+	    	   <a href="/events/<%= e.id %>/edit">Edit</a> Delete    		
+    			
+    				<% elsif @joined_events.include?(e) %>
+    					Unjoin
+    				<% else %>    					
+			    		<form action="/events/<%= e.id%>/join" method="post">
+			    			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			    			<input type="hidden" name="_method" value="patch">
+			    			<input type="submit" value="Join">
+			    		</form>			    		
+    				<% end %>
+    			</td>
+    		</tr>
+    		<% end %>   
+  			</tbody>
+		</table>
+		<br>
+		<h3>Add Event</h3>
+		<form action="/events" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			Name <input type="text" name="event[name]">
+			Date <input type="date" name="event[date]">
+			State <input type="text" maxlength="2" name="event[state]">
+			<input type="submit" value="Add Event">
+		</form>	
+		
+</body>
+</html>
+

@@ -1,0 +1,34 @@
+#left {
+	display: inline-block;
+	width: 450px;
+	vertical-align: top;
+}
+#right {
+	display: inline-block;
+	width: 400px;
+	vertical-align: top;	
+}
+/*#logout {
+	display: inline-block;
+	border: none;
+	outline: none;
+	background-color: grey;
+	color: blue;
+	margin-left: 20px;
+	display: inline-block;
+	margin-left: 20px;
+}*/
+#scroll {
+	width: 350px;
+	height: 300px;
+	overflow: scroll;
+}
+#logout {
+	margin-left: 20px;
+	display: inline-block;
+	color: blue;
+	text-decoration: underline;
+	background: none;
+  	border: none;
+  	padding: 0;
+}
